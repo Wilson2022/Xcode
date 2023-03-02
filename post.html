@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/animate.css@3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-plus/dist/index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/element-plus"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>new WOW().init();</script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>scroll</title>
+
+    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- <script src="http://threejs.org/examples/js/libs/stats.min.js"></script> -->
+    <style>
+        :root {
+            --height: 150px
+        }
+        
+
+        body {
+            background-color: black;
+        }
+
+        #app {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+        }
+
+        /* ---- reset ---- */
+        canvas {
+            display: block;
+            align-items: center;
+        }
+
+        /* ---- particles.js container ---- */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url("");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50% 50%;
+            z-index: -999;
+        }
+
+        /* ---- stats.js ---- */
+        .count-particles {
+            background: #000022;
+            position: absolute;
+            top: 48px;
+            left: 0;
+            width: 80px;
+            color: #13E8E9;
+            font-size: .8em;
+            text-align: left;
+            text-indent: 4px;
+            line-height: 14px;
+            padding-bottom: 2px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        .js-count-particles {
+            font-size: 1.1em;
+        }
+
+        #stats,
+        .count-particles {
+            -webkit-user-select: none;
+            margin-top: 5px;
+            margin-left: 5px;
+        }
+
+        #stats {
+            border-radius: 3px 3px 0 0;
+            overflow: hidden;
+        }
+
+        .count-particles {
+            border-radius: 0 0 3px 3px;
+        }
+
+        /* .ctrl {} */
+        .newyear {
+            width: 650px;
+            height: 450px;
+            z-index: 2;
+            border-radius: 15px;
+            /* background: rgb(99, 228, 189); */
+
+            /* top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); */
+        }
+
+        .bgcale {
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(45, 43, 43, 0.303);
+            z-index: 1;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+        }
+
+        .newyear img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .continer {
+            width: 870px;
+            height: var(--height);
+            margin: 25px auto;
+            background: linear-gradient(135deg, #fd6585, #0d25b9);
+            text-align: center;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="particles-js"></div>
+    <div class="count-particles">
+        <span class="js-count-particles"></span>
+    </div>
+
+
+    <div class="bgcale">
+        <div class="newyear animated"><img src="https://pic.imgdb.cn/item/63e2455f4757feff338ce026.png" alt=""> </div>
+
+    </div>
+
+    <div id="app">
+        <div class="continer wow fadeInDown ">
+            <h1>{{message}}</h1>
+            <el-button type="success" @click="postAxios()">笑话</el-button>
+            <el-button type="danger" @click="postAxios2()">笑话</el-button>
+            <el-button type="info" @click="">hello </el-button>
+            <el-button type="primary" @click="getwather()">天气</el-button>
+            <el-button type="success" plain @click="myclick()">hi</el-button>
+
+        </div>
+        <div class="continer wow fadeInDown ">
+            <h1>{{message}}</h1>
+            <el-button type="success">heelo</el-button>
+            <el-button type="danger">hello</el-button>
+            <el-button type="info">hello </el-button>
+            <el-button type="primary">hello</el-button>
+            <el-button type="success" plain @click="myclick()">hi</el-button>
+            <div id="new">{{joke}}</div>
+
+        </div>
+    </div>
+</body>
+<script src="./js/index.js"></script>
+<script src="./js/particular.js"></script>
+<script>
+    const App = {
+        data() {
+            return {
+                message: "Hello Element Plus",
+                mymessage: "hei",
+                joke: "null",
+            };
+        },
+        methods: {
+            myclick: function () {
+                alert("Hello Element Plus")
+            },
+            postAxios: function () {
+                axios("https://autumnfish.cn/api/joke").then(function (e) { message = e.data; console.log(message); this.mymessage = e.data })
+
+            },
+          
+            postAxios2: function () {
+                axios.request({
+                    method: 'GET',
+                    url: ("https://autumnfish.cn/api/joke")
+                }).then(
+                    function (response) {
+                        console.log(response.data);
+                        jokes = response.data;
+
+                    })
+
+            },
+        },
+        getjoke: function () {
+            getJoke = async () => {
+                try {
+                    const response = await axios.get('https://api.chucknorris.io/jokes/random');
+                    return response.data.value;
+                } catch (error) {
+                    console.error(error);
+                    return null;
+                } getJoke().then((joke) => {
+                    console.log(joke);
+                });
+            }
+        }
+
+        ,
+        getwather: function () {
+            axios.request("http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=%E4%B8%8A%E6%B5%B7&latitude=39.902895&longitude=116.427915&needMoreData=true&pageNo=1&pageSize=7").then(data => { console.log(data) })
+
+            // const instance = axios.create({
+            //     baseURL: 'https://api.example.com',
+            //     proxy: {
+            //         host: '127.0.0.1',
+            //         port: 9000,
+            //     },
+            // });
+
+        }
+
+    };
+    // 声名
+    const app = Vue.createApp(App);
+    app.use(ElementPlus);
+
+    // 安装在id为app上
+    app.mount("#app");
+    document.body.style.overflow = "hidden";
+
+
+</script>
+
+</body>
+
+</html>
