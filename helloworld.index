@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+  </head>
+  <style>
+    .aqua {
+      background-color: aqua;
+    }
+
+    .red {
+      background-color: red;
+    }
+    .gold {
+      background-color: gold;
+    }
+    .swiper {
+      height: 500px;
+      text-align: center;
+    }
+    .swiper .swiper-slide img {
+      height: 100%;
+    }
+    .alert {
+      background-color: rgba(167, 165, 165, 0.297);
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+    }
+
+    .alert .content {
+      width: 650px;
+      height: 450px;
+      text-align: center;
+      vertical-align: calc(450px / 2);
+      background-color: aqua;
+      border-radius: 15px;
+    }
+  </style>
+
+  <body>
+    <section>
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide aqua">
+            <img
+              src="https://gitee.com/Wilsoncomeon/img-bed/raw/master/img/dd9c5c06-925b-11ed-985a-0242ac120002.jpeg"
+              alt=""
+            />
+          </div>
+          <div class="swiper-slide red">
+            <img
+              src="https://gitee.com/Wilsoncomeon/img-bed/raw/master/img/dd9c5c06-925b-11ed-985a-0242ac120002.jpeg"
+              alt=""
+            />
+          </div>
+          <div class="swiper-slide gold">
+            <img
+              src="https://gitee.com/Wilsoncomeon/img-bed/raw/master/img/dd9c5c06-925b-11ed-985a-0242ac120002.jpeg"
+              alt=""
+            />
+          </div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+
+        <!-- 如果需要导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- 如果需要滚动条 -->
+        <div class="swiper-scrollbar"></div>
+      </div>
+    </section>
+    <!-- <section>
+        <h1>hello world</h1>
+    </section>
+    <div class="alert">
+        <div class="content">
+            <h1>hello wow.js</h1>
+        </div>
+    </div>
+    <div class="open">open</div>
+    <div class="close">close</div> -->
+  </body>
+  <script>
+    // function $(classname) { return Object.prototype.toString.call(classname) === "[object String]" ? document.getElementsByClassName(classname) : null; }
+
+    // // let open=document.getElementsByClassName('open')
+    // // console.log(open);
+    // const el = {
+    //     open: $('open'),
+    //     colse: $('close'),
+    //     alert: $('alert'),
+
+    // }
+    // function defEventLinstener(doing,fx) {
+    //     this.addEventListener('doing', () => {
+    //         el.alert[0].fx
+    //     })
+
+    // }
+    // el.open.defEventListener('click',open())
+  </script>
+
+  <script>
+    var mySwiper = new Swiper(".swiper", {
+      direction: "horizontal", // 垂直切换选项
+      loop: true, // 循环模式选项
+
+      // 如果需要分页器
+      pagination: {
+        el: ".swiper-pagination",
+      },
+
+      // 如果需要前进后退按钮
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+
+      // 如果需要滚动条
+      scrollbar: {
+        el: ".swiper-scrollbar",
+      },
+    });
+  </script>
+</html>
